@@ -1,0 +1,3 @@
+*.EXE
+*.o
+target/*
