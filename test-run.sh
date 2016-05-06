@@ -23,6 +23,14 @@ poker|1f)
   CLAZZ="round01.Task1F"
   WD="poker"
   ;;
+primes2|2a)
+  CLAZZ="round02.Task2A"
+  WD="primes2"
+  ;;
+permut|2b)
+  CLAZZ="round02.Task2B"
+  WD="permut"
+  ;;
 *)
   echo "Test not found"
   exit
