@@ -1,4 +1,4 @@
-package round01;
+package round02;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -7,7 +7,7 @@ import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.InputMismatchException;
 
-public class Task1A {
+public class Task2A {
   InputStream is;
   PrintWriter out;
   String INPUT = "2 1000000";
@@ -16,16 +16,26 @@ public class Task1A {
     int start = ni();
     int end = ni();
     boolean absent = true;
-    for (int i = start; i <= end; i++) {
-      int max = (int) Math.sqrt(i);
-      boolean ok = true;
-      for (int j = 2; j <= max && j < i; j++) {
-        if (i % j == 0) {
-          ok = false;
-          break;
+    int max = (int) Math.sqrt(end);
+    boolean[] primes = new boolean[max + 1];
+    Arrays.fill(primes, true);
+    primes[0] = false;
+    primes[1] = false;
+    for (int i = 2; i <= max; i++) {
+      if (primes[i]) {
+        for (int j = i + i; j <= max; j+=i) {
+          primes[j] = false;
         }
       }
-      if (ok) {
+    }
+    int up = (int) Math.sqrt(start);
+    int nextup = (up + 1) * (up + 1);
+    for (int i = start; i <= end; i++) {
+      if (i == nextup) {
+        up++;
+        nextup = (up + 1) * (up + 1);
+      }
+      if (isPrime(primes, i, up)) {
         absent = false;
         out.println(i);
       }
@@ -34,9 +44,20 @@ public class Task1A {
       out.println("Absent");
     }
   }
+
+  private boolean isPrime(boolean[] primes, int i, int up) {
+    for (int j = 2; j <= up; j++) {
+      if (primes[j]) {
+        if (i % j == 0) {
+          return false;
+        }
+      }
+    }
+    return true;
+  }
   
   public static void main(String[] args) throws Exception {
-    new Task1A().run();
+    new Task2A().run();
   }
   
   void run() throws Exception {
