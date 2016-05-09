@@ -31,6 +31,10 @@ permut|2b)
   CLAZZ="round02.Task2B"
   WD="permut"
   ;;
+route|2c)
+  CLAZZ="round02.Task2C"
+  WD="route"
+  ;;
 *)
   echo "Test not found"
   exit

@@ -24,14 +24,14 @@ public class Task2C {
     int[][] cost = new int[n][n];
     for (int i = 0; i < n; i++) {
       for (int j = 0; j < n; j++) {
-        int v = rows[i][j];
         if (i == 0) {
-          cost[0][j] = j > 0 ? v + cost[0][j-1] : v;
+          cost[i][j] = j > 0 ? cost[i][j-1] : 0;
         } else if (j == 0) {
-          cost[i][0] = i > 0 ? v + cost[i-1][0] : v;
+          cost[i][j] = i > 0 ? cost[i-1][j] : 0;
         } else {
-          cost[i][j] = v + Math.min(cost[i][j-1], cost[i-1][j]);
+          cost[i][j] = Math.min(cost[i][j-1], cost[i-1][j]);
         }
+        cost[i][j] += rows[i][j];
       }
     }
     int min = n - 1;
