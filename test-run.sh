@@ -39,6 +39,10 @@ longsum|2e)
   CLAZZ="round02.Task2E"
   WD="longsum"
   ;;
+spiral|2f)
+  CLAZZ="round02.Task2F"
+  WD="spiral"
+  ;;
 *)
   echo "Test not found"
   exit
