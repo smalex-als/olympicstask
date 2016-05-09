@@ -35,6 +35,10 @@ route|2c)
   CLAZZ="round02.Task2C"
   WD="route"
   ;;
+longsum|2e)
+  CLAZZ="round02.Task2E"
+  WD="longsum"
+  ;;
 *)
   echo "Test not found"
   exit
