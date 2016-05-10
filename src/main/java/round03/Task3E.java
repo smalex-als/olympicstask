@@ -7,79 +7,62 @@ import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.InputMismatchException;
 
-public class Task3C {
+public class Task3E {
   InputStream is;
   PrintWriter out;
-  String INPUT = "806 7150 7 33462 320 10216 15 19946 397 16042 327 31571 245 30373 140 33994 231";
+  String INPUT = "1234 53212300091";
   
   void solve() {
-    int empty = ni();
-    int full = ni();
-    int weight = full - empty;
-    int n = ni();
-    int[] p = new int[n];
-    int[] w = new int[n];
-    for (int i = 0; i < n; i++) {
-      p[i] = ni();
-      w[i] = ni();
+    int[] n1 = readNumber(ns().toCharArray());
+    int[] n2 = readNumber(ns().toCharArray());
+    if (isZero(n1) || isZero(n2)) {
+      out.println("0");
+      return;
     }
-    int[][] maxcost = new int[n][weight + 1];
-    int[][] mincost = new int[n][weight + 1];
-    for (int j = 0; j < n; j++) {
-      Arrays.fill(maxcost[j], Integer.MIN_VALUE / 2);
-      Arrays.fill(mincost[j], Integer.MAX_VALUE / 2);
+
+    int[] n3 = new int[n1.length + n2.length];
+    int pos = 0;
+    for (int i = 0; i < n1.length; i++) {
+      int carry = 0;
+      pos = i;
+      for (int j = 0; j < n2.length; j++) {
+        carry = carry + n1[i] * n2[j] + n3[pos];
+        n3[pos] = carry % 10;
+        carry = carry / 10;
+        pos++;
+      }
+      n3[pos] += carry;
     }
-    for (int j = 0; j < n; j++) {
-      maxcost[j][0] = 0;
-      mincost[j][0] = 0;
-      int curp = p[j];
-      int curw = w[j];
-      if (j == 0) {
-        for (int i = 1; i * curw <= weight; i++) {
-          maxcost[j][i * curw] = curp * i;
-          mincost[j][i * curw] = curp * i;
-        }
-      } else {
-        for (int i = 1; i <= weight; i++) {
-          if (i - curw >= 0) {
-            maxcost[j][i] = 
-              Math.max(
-                maxcost[j-1][i],
-                curp + 
-                Math.max(maxcost[j-1][i - curw], maxcost[j][i - curw])
-              );
-            mincost[j][i] = 
-              Math.min(
-                mincost[j-1][i],
-                curp + 
-                Math.min(mincost[j-1][i - curw], mincost[j][i - curw])
-              );
-          } else {
-            maxcost[j][i] = maxcost[j-1][i];
-            mincost[j][i] = mincost[j-1][i];
-          }
-        }
+
+    boolean first = true;
+    for (int i = n3.length - 1; i >= 0; i--) {
+      if (!first || first && n3[i] > 0) {
+        out.print(n3[i]);
+        first = false;
       }
     }
-    int maxres = Integer.MIN_VALUE;
-    int minres = Integer.MAX_VALUE;
-    for (int i = 0; i < n; i++) {
-      if (maxcost[i][weight] > 0) {
-        maxres = Math.max(maxres, maxcost[i][weight]);
-      }
-      if (mincost[i][weight] > 0) {
-        minres = Math.min(minres, mincost[i][weight]);
-      }
-    }
-    if (minres == Integer.MAX_VALUE || maxres == Integer.MIN_VALUE) {
-      out.println("This is impossible.");
-    } else {
-      out.println(minres + " " + maxres);
-    }
+    out.println();
   }
-  
+
+  private int[] readNumber(char[] charArray) {
+    int[] res = new int[charArray.length];
+    for (int i = 0; i < res.length; i++) {
+      res[i] = charArray[res.length - i - 1] - '0';
+    }
+    return res;
+  }
+
+  private boolean isZero(int[] m) {
+    for (int i = m.length - 1; i >= 0; i--) {
+      if (m[i] > 0) {
+        return false;
+      }
+    }
+    return true;
+  }
+
   public static void main(String[] args) throws Exception {
-    new Task3C().run();
+    new Task3E().run();
   }
   
   void run() throws Exception {

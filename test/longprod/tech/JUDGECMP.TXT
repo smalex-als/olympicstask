@@ -1,0 +1,8 @@
+comparing judge solutions speed
+
+10000x10000 random digits (FOR10000.PAS)
+IC400
+
+judge1 - 23s
+judge2 - 39s
+judge3 - 42s

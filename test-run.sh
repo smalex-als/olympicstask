@@ -55,6 +55,10 @@ piggy|3c)
   CLAZZ="round03.Task3C"
   WD="piggy"
   ;;
+longprod|3e)
+  CLAZZ="round03.Task3E"
+  WD="longprod"
+  ;;
 *)
   echo "Test not found"
   exit
@@ -66,6 +70,7 @@ mvn install
 JAR=`pwd`/target/ru.smalex.olympicstask-1.0-SNAPSHOT.jar
 cd test/$WD
 fpc CHECK.pas
+fpc JUDGE1.pas
 for f in inp/*.in;
 do
   cp $f $WD.in
@@ -79,6 +84,9 @@ do
   else
     echo "$number: fail"
   fi
+  # cp $WD.out ${WD}_${number}.out
+  # ./JUDGE1
+  # cp $WD.out ${WD}_j${number}.out
 done
 
 rm CHECK CHECK.o $WD.out $WD.in
