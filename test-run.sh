@@ -51,6 +51,10 @@ permut2|3b)
   CLAZZ="round03.Task3B"
   WD="permut2"
   ;;
+piggy|3c)
+  CLAZZ="round03.Task3C"
+  WD="piggy"
+  ;;
 *)
   echo "Test not found"
   exit
