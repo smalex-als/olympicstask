@@ -47,6 +47,10 @@ pfactor|3a)
   CLAZZ="round03.Task3A"
   WD="pfactor"
   ;;
+permut2|3b)
+  CLAZZ="round03.Task3B"
+  WD="permut2"
+  ;;
 *)
   echo "Test not found"
   exit
