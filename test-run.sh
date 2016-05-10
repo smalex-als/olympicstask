@@ -43,6 +43,10 @@ spiral|2f)
   CLAZZ="round02.Task2F"
   WD="spiral"
   ;;
+pfactor|3a)
+  CLAZZ="round03.Task3A"
+  WD="pfactor"
+  ;;
 *)
   echo "Test not found"
   exit
