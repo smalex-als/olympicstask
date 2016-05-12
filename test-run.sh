@@ -63,6 +63,10 @@ serpent|3f)
   CLAZZ="round03.Task3F"
   WD="serpent"
   ;;
+decomp|4b)
+  CLAZZ="round04.Task4B"
+  WD="decomp"
+  ;;
 *)
   echo "Test not found"
   exit
