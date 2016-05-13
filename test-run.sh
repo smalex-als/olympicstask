@@ -67,6 +67,10 @@ decomp|4b)
   CLAZZ="round04.Task4B"
   WD="decomp"
   ;;
+gangster|4c)
+  CLAZZ="round04.Task4C"
+  WD="gangster"
+  ;;
 *)
   echo "Test not found"
   exit
