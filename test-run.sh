@@ -75,6 +75,10 @@ divshort|4e)
   CLAZZ="round04.Task4E"
   WD="divshort"
   ;;
+bracket|4f)
+  CLAZZ="round04.Task4F"
+  WD="bracket"
+  ;;
 *)
   echo "Test not found"
   exit
