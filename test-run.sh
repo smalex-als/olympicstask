@@ -71,6 +71,10 @@ gangster|4c)
   CLAZZ="round04.Task4C"
   WD="gangster"
   ;;
+divshort|4e)
+  CLAZZ="round04.Task4E"
+  WD="divshort"
+  ;;
 *)
   echo "Test not found"
   exit
