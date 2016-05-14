@@ -79,6 +79,10 @@ bracket|4f)
   CLAZZ="round04.Task4F"
   WD="bracket"
   ;;
+friendly|5a)
+  CLAZZ="round05.Task5A"
+  WD="friendly"
+  ;;
 *)
   echo "Test not found"
   exit
