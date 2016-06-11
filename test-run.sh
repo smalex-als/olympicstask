@@ -83,6 +83,18 @@ friendly|5a)
   CLAZZ="round05.Task5A"
   WD="friendly"
   ;;
+bracket2|5b)
+  CLAZZ="round05.Task5B"
+  WD="bracket2"
+  ;;
+route2|5c)
+  CLAZZ="round05.Task5C"
+  WD="route2"
+  ;;
+scale|5e)
+  CLAZZ="round05.Task5E"
+  WD="scale"
+  ;;
 *)
   echo "Test not found"
   exit
