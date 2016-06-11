@@ -95,6 +95,10 @@ scale|5e)
   CLAZZ="round05.Task5E"
   WD="scale"
   ;;
+cover|6a)
+  CLAZZ="round06.Task6A"
+  WD="cover"
+  ;;
 *)
   echo "Test not found"
   exit
@@ -105,21 +109,33 @@ esac
 mvn install
 JAR=`pwd`/target/ru.smalex.olympicstask-1.0-SNAPSHOT.jar
 cd test/$WD
-fpc CHECK.pas
+if [ -f CHECK.pas ]; then
+  fpc CHECK.pas
+fi
 for f in inp/*.in;
 do
   cp $f $WD.in
   
   java -cp $JAR -DONLINE_JUDGE="true" \
     $CLAZZ < $WD.in > $WD.out
-  res=`./CHECK`
-  number=`echo $f | sed 's/[^0-9]*//g'`
-  if [ "$res" == "a" ]; then
-    echo "$number: OK"
+  if [ -f CHECK.pas ]; then
+    res=`./CHECK`
+    number=`echo $f | sed 's/[^0-9]*//g'`
+    if [ "$res" == "a" ]; then
+      echo "$number: OK"
+    else
+      echo "$number: fail"
+    fi
   else
-    echo "$number: fail"
+    number=`echo $f | sed 's/[^0-9]*//g'`
+    diff -b -B $WD.out out/$WD.$number.out
+    if [ $? -eq 0 ]; then
+      echo "$number: OK"
+    else
+      echo "$number: fail"
+    fi
   fi
 done
 
-rm CHECK CHECK.o $WD.out $WD.in
+# rm CHECK CHECK.o $WD.out $WD.in
 
