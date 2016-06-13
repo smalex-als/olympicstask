@@ -99,6 +99,10 @@ cover|6a)
   CLAZZ="round06.Task6A"
   WD="cover"
   ;;
+sums|6b)
+  CLAZZ="round06.Task6B"
+  WD="sums"
+  ;;
 *)
   echo "Test not found"
   exit
@@ -137,5 +141,11 @@ do
   fi
 done
 
-# rm CHECK CHECK.o $WD.out $WD.in
+if [ -f CHECK ]; then
+  rm CHECK
+fi
+if [ -f CHECK.o ]; then
+  rm CHECK.o
+fi
+rm $WD.out $WD.in
 
