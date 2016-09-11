@@ -103,6 +103,10 @@ sums|6b)
   CLAZZ="round06.Task6B"
   WD="sums"
   ;;
+lines|6e)
+  CLAZZ="round06.Task6E"
+  WD="lines"
+  ;;
 *)
   echo "Test not found"
   exit
