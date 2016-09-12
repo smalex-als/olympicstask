@@ -107,6 +107,10 @@ lines|6e)
   CLAZZ="round06.Task6E"
   WD="lines"
   ;;
+paintlab|6f)
+  CLAZZ="round06.Task6F"
+  WD="paintlab"
+  ;;
 *)
   echo "Test not found"
   exit

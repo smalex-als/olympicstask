@@ -12,7 +12,7 @@ public class Task6E {
   // problem http://codeforces.com/contest/6/problem/E
   InputStream is;
   PrintWriter out;
-  String INPUT = "5\n"
+  String INPUT1 = "5\n"
     + "....X\n"
     + ".OOOO\n"
     + ".....\n"
@@ -24,15 +24,13 @@ public class Task6E {
     + "OOOOO\n"
     + ".....\n"
     + "..@..";
-  String INPUT3 = "5\n"
+  String INPUT = "5\n"
     + "...X.\n"
     + ".....\n"
     + "O.OOO\n"
     + ".....\n"
     + "....@";
-  String INPUT6 = "2\n" 
-  + "@O\n" 
-  + "OX\n";
+  final int EMPTY = -2;
   
   void solve() {
     int[] xy = new int[]{-1, 0, 1, 0, 
@@ -54,9 +52,9 @@ public class Task6E {
         } else if (ch == 'X') {
           endy = i;
           endx = j;
-          map[i][j] = -2;
+          map[i][j] = EMPTY;
         } else {
-          map[i][j] = ch == 'O' ? -1 : -2; 
+          map[i][j] = ch == 'O' ? -1 : EMPTY; 
         }
       }
     }
@@ -67,18 +65,17 @@ public class Task6E {
       int cy = p / n;
       int cx = p % n;
       for (int i = 0; i < 4; i++) {
-        int newy = cy + xy[i*2];
-        int newx = cx + xy[i*2 + 1];
-        if (newx >= 0 && newx < n && newy >= 0 && newy < n) {
-          if (map[newy][newx] == -2 || map[newy][newx] > 
-              map[cy][cx] + 1) {
-            map[newy][newx] = map[cy][cx] + 1;
-            q.push(newy * n + newx);
+        int ny = cy + xy[i*2];
+        int nx = cx + xy[i*2 + 1];
+        if (nx >= 0 && nx < n && ny >= 0 && ny < n) {
+          if (map[ny][nx] == EMPTY || map[ny][nx] > map[cy][cx] + 1) {
+            map[ny][nx] = map[cy][cx] + 1;
+            q.push(ny * n + nx);
           }
         }
       }
     }
-    if (map[endy][endx] == -2) {
+    if (map[endy][endx] == EMPTY) {
       System.out.println("N");
       return;
     }
@@ -87,18 +84,18 @@ public class Task6E {
     for (int j = map[endy][endx]; j > 0; j--) {
       map[cy][cx] = -3;
       for (int i = 0; i < 4; i++) {
-        int newy = cy + xy[i*2];
-        int newx = cx + xy[i*2 + 1];
-        if (newx >= 0 && newx < n && newy >= 0 && newy < n) {
-          if (map[newy][newx] + 1 == j) {
-            cy = newy;
-            cx = newx;
+        int ny = cy + xy[i*2];
+        int nx = cx + xy[i*2 + 1];
+        if (nx >= 0 && nx < n && ny >= 0 && ny < n) {
+          if (map[ny][nx] + 1 == j) {
+            cy = ny;
+            cx = nx;
             break;
           }
         }
       }
     }
-    System.out.println("Y");
+    out.println("Y");
     for (int i = 0; i < n; i++) {
       StringBuilder sb = new StringBuilder();
       for (int j = 0; j < n; j++) {
@@ -112,7 +109,7 @@ public class Task6E {
           sb.append(".");
         }
       }
-      System.out.println(sb.toString());
+      out.println(sb.toString());
     }
   }
   
